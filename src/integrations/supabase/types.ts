@@ -363,10 +363,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      has_baby_access: {
-        Args: { _baby_id: string; _user_id: string }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
