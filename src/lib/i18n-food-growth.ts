@@ -1,0 +1,31 @@
+export const enFoodGrowth: Record<string, string> = {
+  "common.clear": "Clear",
+  "food.voiceSearchStart": "Voice search",
+  "food.voiceSearchStop": "Stop voice search",
+  "food.favoriteAria": "Favorite",
+  "food.mealTimePrep": "At {time} · {mins} min prep",
+  "growth.trackTitle": "Track {name}'s Growth",
+  "growth.tipTitleName": "{name}'s growth is on a healthy curve",
+  "growth.headCircCm": "Head Circ. (cm)",
+  "recipe.kcal": "kcal",
+  "recipe.gProtein": "g protein",
+  "recipe.mgIron": "mg iron",
+  "recipe.mgCalc": "mg calc",
+  "recipe.minPrep": "{n} min",
+};
+
+export const taFoodGrowth: Record<string, string> = {
+  "common.clear": "அழி",
+  "food.voiceSearchStart": "குரல் தேடல்",
+  "food.voiceSearchStop": "குரல் தேடலை நிறுத்து",
+  "food.favoriteAria": "விருப்பம்",
+  "food.mealTimePrep": "{time} மணிக்கு · {mins} நிமிட தயாரிப்பு",
+  "growth.trackTitle": "{name} இன் வளர்ச்சியை கண்காணி",
+  "growth.tipTitleName": "{name} இன் வளர்ச்சி ஆரோக்கியமான பாதையில் உள்ளது",
+  "growth.headCircCm": "தலை சுற்றளவு (செ.மீ)",
+  "recipe.kcal": "கலோரி",
+  "recipe.gProtein": "கி. புரதம்",
+  "recipe.mgIron": "மி.கி இரும்பு",
+  "recipe.mgCalc": "மி.கி கால்சியம்",
+  "recipe.minPrep": "{n} நிமிடம்",
+};
