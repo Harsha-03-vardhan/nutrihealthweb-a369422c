@@ -16,7 +16,7 @@ import { useDebounced, useVoiceInput, highlight } from "@/lib/hooks";
 import { toast } from "sonner";
 import { useT } from "@/lib/i18n";
 
-export const Route = createFileRoute("/food")({
+export const Route = createFileRoute("/_authenticated/food")({
   head: () => ({
     meta: [
       { title: "Feeding Plan — NutriHealth" },

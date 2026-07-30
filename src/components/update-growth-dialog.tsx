@@ -22,11 +22,10 @@ export function UpdateGrowthDialog({ open, onOpenChange }: { open: boolean; onOp
       toast.error(t("growth.invalid"));
       return;
     }
-    const now = new Date();
-    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    addGrowth({ month: months[now.getMonth()], year: now.getFullYear(), weight: w, height: h, headCircum: Number(head) || 0 });
+    void addGrowth({ weight: w, height: h, headCircum: Number(head) || 0 });
     toast.success(t("growth.updated"));
     onOpenChange(false);
+
   };
 
   return (

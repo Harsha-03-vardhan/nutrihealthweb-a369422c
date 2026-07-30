@@ -14,7 +14,350 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      babies: {
+        Row: {
+          allergies: string
+          birth_time: string
+          birth_weight: number | null
+          blood_group: string
+          bmi: number | null
+          created_at: string
+          dob: string
+          gender: string
+          head_circumference: number | null
+          height: number | null
+          id: string
+          name: string
+          notes: string
+          photo: string
+          status: string
+          updated_at: string
+          user_id: string
+          water_ml: number
+          weight: number | null
+        }
+        Insert: {
+          allergies?: string
+          birth_time?: string
+          birth_weight?: number | null
+          blood_group?: string
+          bmi?: number | null
+          created_at?: string
+          dob: string
+          gender?: string
+          head_circumference?: number | null
+          height?: number | null
+          id?: string
+          name: string
+          notes?: string
+          photo?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+          water_ml?: number
+          weight?: number | null
+        }
+        Update: {
+          allergies?: string
+          birth_time?: string
+          birth_weight?: number | null
+          blood_group?: string
+          bmi?: number | null
+          created_at?: string
+          dob?: string
+          gender?: string
+          head_circumference?: number | null
+          height?: number | null
+          id?: string
+          name?: string
+          notes?: string
+          photo?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+          water_ml?: number
+          weight?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "babies_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      favorite_recipes: {
+        Row: {
+          baby_id: string
+          created_at: string
+          id: string
+          recipe_id: string
+        }
+        Insert: {
+          baby_id: string
+          created_at?: string
+          id?: string
+          recipe_id: string
+        }
+        Update: {
+          baby_id?: string
+          created_at?: string
+          id?: string
+          recipe_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorite_recipes_baby_id_fkey"
+            columns: ["baby_id"]
+            isOneToOne: false
+            referencedRelation: "babies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      growth_entries: {
+        Row: {
+          baby_id: string
+          bmi: number | null
+          created_at: string
+          entry_date: string
+          head_circ: number | null
+          height: number
+          id: string
+          weight: number
+        }
+        Insert: {
+          baby_id: string
+          bmi?: number | null
+          created_at?: string
+          entry_date?: string
+          head_circ?: number | null
+          height: number
+          id?: string
+          weight: number
+        }
+        Update: {
+          baby_id?: string
+          bmi?: number | null
+          created_at?: string
+          entry_date?: string
+          head_circ?: number | null
+          height?: number
+          id?: string
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "growth_entries_baby_id_fkey"
+            columns: ["baby_id"]
+            isOneToOne: false
+            referencedRelation: "babies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meals: {
+        Row: {
+          baby_id: string
+          completed: boolean
+          created_at: string
+          favorite: boolean
+          id: string
+          recipe_id: string
+          scheduled_date: string
+          skipped: boolean
+          slot: string
+          time: string
+        }
+        Insert: {
+          baby_id: string
+          completed?: boolean
+          created_at?: string
+          favorite?: boolean
+          id?: string
+          recipe_id: string
+          scheduled_date?: string
+          skipped?: boolean
+          slot: string
+          time?: string
+        }
+        Update: {
+          baby_id?: string
+          completed?: boolean
+          created_at?: string
+          favorite?: boolean
+          id?: string
+          recipe_id?: string
+          scheduled_date?: string
+          skipped?: boolean
+          slot?: string
+          time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "meals_baby_id_fkey"
+            columns: ["baby_id"]
+            isOneToOne: false
+            referencedRelation: "babies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      milestones: {
+        Row: {
+          age_label: string
+          baby_id: string
+          created_at: string
+          done: boolean
+          emoji: string
+          id: string
+          sort: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          age_label?: string
+          baby_id: string
+          created_at?: string
+          done?: boolean
+          emoji?: string
+          id?: string
+          sort?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          age_label?: string
+          baby_id?: string
+          created_at?: string
+          done?: boolean
+          emoji?: string
+          id?: string
+          sort?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "milestones_baby_id_fkey"
+            columns: ["baby_id"]
+            isOneToOne: false
+            referencedRelation: "babies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          active_baby_id: string | null
+          address: string
+          age: number | null
+          created_at: string
+          email: string
+          id: string
+          mobile: string
+          name: string
+          occupation: string
+          photo: string
+          relationship: string
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          active_baby_id?: string | null
+          address?: string
+          age?: number | null
+          created_at?: string
+          email?: string
+          id: string
+          mobile?: string
+          name?: string
+          occupation?: string
+          photo?: string
+          relationship?: string
+          role?: string
+          updated_at?: string
+        }
+        Update: {
+          active_baby_id?: string | null
+          address?: string
+          age?: number | null
+          created_at?: string
+          email?: string
+          id?: string
+          mobile?: string
+          name?: string
+          occupation?: string
+          photo?: string
+          relationship?: string
+          role?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_active_baby_fk"
+            columns: ["active_baby_id"]
+            isOneToOne: false
+            referencedRelation: "babies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      vaccines: {
+        Row: {
+          age_label: string
+          age_months: number
+          baby_id: string
+          completed: boolean
+          completed_date: string | null
+          created_at: string
+          dose: string
+          due_date: string | null
+          id: string
+          name: string
+          protects: string
+          sort: number
+        }
+        Insert: {
+          age_label?: string
+          age_months?: number
+          baby_id: string
+          completed?: boolean
+          completed_date?: string | null
+          created_at?: string
+          dose?: string
+          due_date?: string | null
+          id?: string
+          name: string
+          protects?: string
+          sort?: number
+        }
+        Update: {
+          age_label?: string
+          age_months?: number
+          baby_id?: string
+          completed?: boolean
+          completed_date?: string | null
+          created_at?: string
+          dose?: string
+          due_date?: string | null
+          id?: string
+          name?: string
+          protects?: string
+          sort?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vaccines_baby_id_fkey"
+            columns: ["baby_id"]
+            isOneToOne: false
+            referencedRelation: "babies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

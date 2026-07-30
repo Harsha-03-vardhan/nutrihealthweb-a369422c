@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
@@ -6,7 +8,7 @@ import {
   Stethoscope, HelpCircle, MessageCircle, Star, LogOut, ChevronRight, Moon, Sun,
   Volume2, Fingerprint, BarChart3, Languages,
 } from "lucide-react";
-import { useApp, useSettings } from "@/lib/store";
+import { useApp, useMeals, useSettings } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
@@ -21,7 +23,7 @@ import { CaregiverForm, BabyForm } from "@/components/profile-forms";
 import { ageFromDob } from "@/lib/age";
 import { useT } from "@/lib/i18n";
 
-export const Route = createFileRoute("/profile")({
+export const Route = createFileRoute("/_authenticated/profile")({
   head: () => ({
     meta: [
       { title: "Your Account — NutriHealth" },
@@ -63,6 +65,21 @@ function ProfilePage() {
   const settings = useSettings();
   const [active, setActive] = useState<string | null>(null);
   const [logout, setLogout] = useState(false);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const resetApp = useApp((s) => s.reset);
+  const resetMeals = useMeals((s) => s.reset);
+
+  const handleSignOut = async () => {
+    setLogout(false);
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    resetApp();
+    resetMeals();
+    await supabase.auth.signOut();
+    toast(t("profile.loggedOut"));
+    navigate({ to: "/auth", replace: true });
+  };
 
   const close = () => setActive(null);
 
@@ -260,7 +277,7 @@ function ProfilePage() {
         title={t("profile.logoutConfirm")}
         description={t("profile.logoutDesc")}
         confirmText={t("profile.logout")}
-        onConfirm={() => { setLogout(false); toast(t("profile.loggedOut")); }}
+        onConfirm={() => { void handleSignOut(); }}
       />
     </div>
   );

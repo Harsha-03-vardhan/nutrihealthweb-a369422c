@@ -11,9 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { AppLayout } from "../components/layout/AppLayout";
 import { Toaster } from "../components/ui/sonner";
 import { ThemeSync } from "../components/theme-sync";
+import { supabase } from "../integrations/supabase/client";
 
 function NotFoundComponent() {
   return (
@@ -136,10 +136,26 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeSync />
-      <AppLayout>
-        <Outlet />
-      </AppLayout>
+      <AuthSync />
+      <Outlet />
       <Toaster position="top-right" richColors closeButton />
     </QueryClientProvider>
   );
+}
+
+/** Keeps the router and query cache in step with Supabase auth transitions. */
+function AuthSync() {
+  const router = useRouter();
+  const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+      router.invalidate();
+      if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
+    });
+    return () => data.subscription.unsubscribe();
+  }, [router, queryClient]);
+
+  return null;
 }
