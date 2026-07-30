@@ -80,28 +80,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NutriHealth — Infant Nutrition & Growth" },
+      { title: "NutriHealth Webapp" },
       {
         name: "description",
         content:
-          "AI-powered infant nutrition, growth tracking, and health guidance for first-time mothers with babies aged 0–3 years.",
+          "Daily overview of your baby's meals, water intake, growth trend, vaccinations and AI nutrition tips in English and Tamil.",
       },
       { name: "author", content: "NutriHealth" },
-      { property: "og:title", content: "NutriHealth — Infant Nutrition & Growth" },
+      { property: "og:title", content: "NutriHealth Webapp" },
       {
         property: "og:description",
-        content: "AI-powered infant nutrition, growth tracking, and health guidance for first-time mothers with babies aged 0–3 years.",
+        content: "Daily overview of your baby's meals, water intake, growth trend, vaccinations and AI nutrition tips in English and Tamil.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "NutriHealth — Infant Nutrition & Growth" },
-      { name: "twitter:description", content: "AI-powered infant nutrition, growth tracking, and health guidance for first-time mothers with babies aged 0–3 years." },
+      { name: "twitter:title", content: "NutriHealth Webapp" },
+      { name: "twitter:description", content: "Daily overview of your baby's meals, water intake, growth trend, vaccinations and AI nutrition tips in English and Tamil." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/33db4ca0-207d-49b3-9980-bf7545b1504a/id-preview-2f6ebaeb--3b0c848f-ee39-4eb7-b786-6b404b2f8166.lovable.app-1784615004485.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/33db4ca0-207d-49b3-9980-bf7545b1504a/id-preview-2f6ebaeb--3b0c848f-ee39-4eb7-b786-6b404b2f8166.lovable.app-1784615004485.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
