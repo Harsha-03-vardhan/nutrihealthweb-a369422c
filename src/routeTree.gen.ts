@@ -10,36 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as ProfileRouteImport } from './routes/profile'
-import { Route as HealthRouteImport } from './routes/health'
-import { Route as GrowthRouteImport } from './routes/growth'
-import { Route as FoodRouteImport } from './routes/food'
 import { Route as AuthRouteImport } from './routes/auth'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedHealthRouteImport } from './routes/_authenticated/health'
+import { Route as AuthenticatedGrowthRouteImport } from './routes/_authenticated/growth'
+import { Route as AuthenticatedFoodRouteImport } from './routes/_authenticated/food'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProfileRoute = ProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HealthRoute = HealthRouteImport.update({
-  id: '/health',
-  path: '/health',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GrowthRoute = GrowthRouteImport.update({
-  id: '/growth',
-  path: '/growth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FoodRoute = FoodRouteImport.update({
-  id: '/food',
-  path: '/food',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -47,78 +27,98 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
+  id: '/_authenticated/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/_authenticated/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedHealthRoute = AuthenticatedHealthRouteImport.update({
+  id: '/_authenticated/health',
+  path: '/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedGrowthRoute = AuthenticatedGrowthRouteImport.update({
+  id: '/_authenticated/growth',
+  path: '/growth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedFoodRoute = AuthenticatedFoodRouteImport.update({
+  id: '/_authenticated/food',
+  path: '/food',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/food': typeof FoodRoute
-  '/growth': typeof GrowthRoute
-  '/health': typeof HealthRoute
-  '/profile': typeof ProfileRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/food': typeof AuthenticatedFoodRoute
+  '/growth': typeof AuthenticatedGrowthRoute
+  '/health': typeof AuthenticatedHealthRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/': typeof AuthenticatedIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/food': typeof FoodRoute
-  '/growth': typeof GrowthRoute
-  '/health': typeof HealthRoute
-  '/profile': typeof ProfileRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/food': typeof AuthenticatedFoodRoute
+  '/growth': typeof AuthenticatedGrowthRoute
+  '/health': typeof AuthenticatedHealthRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/': typeof AuthenticatedIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/food': typeof FoodRoute
-  '/growth': typeof GrowthRoute
-  '/health': typeof HealthRoute
-  '/profile': typeof ProfileRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/food': typeof AuthenticatedFoodRoute
+  '/_authenticated/growth': typeof AuthenticatedGrowthRoute
+  '/_authenticated/health': typeof AuthenticatedHealthRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/': typeof AuthenticatedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/auth'
+    | '/reset-password'
     | '/food'
     | '/growth'
     | '/health'
     | '/profile'
-    | '/reset-password'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/auth'
+    | '/reset-password'
     | '/food'
     | '/growth'
     | '/health'
     | '/profile'
-    | '/reset-password'
+    | '/'
   id:
     | '__root__'
-    | '/'
     | '/auth'
-    | '/food'
-    | '/growth'
-    | '/health'
-    | '/profile'
     | '/reset-password'
+    | '/_authenticated/food'
+    | '/_authenticated/growth'
+    | '/_authenticated/health'
+    | '/_authenticated/profile'
+    | '/_authenticated/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
-  FoodRoute: typeof FoodRoute
-  GrowthRoute: typeof GrowthRoute
-  HealthRoute: typeof HealthRoute
-  ProfileRoute: typeof ProfileRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  AuthenticatedFoodRoute: typeof AuthenticatedFoodRoute
+  AuthenticatedGrowthRoute: typeof AuthenticatedGrowthRoute
+  AuthenticatedHealthRoute: typeof AuthenticatedHealthRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,34 +130,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profile': {
-      id: '/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof ProfileRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/health': {
-      id: '/health'
-      path: '/health'
-      fullPath: '/health'
-      preLoaderRoute: typeof HealthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/growth': {
-      id: '/growth'
-      path: '/growth'
-      fullPath: '/growth'
-      preLoaderRoute: typeof GrowthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/food': {
-      id: '/food'
-      path: '/food'
-      fullPath: '/food'
-      preLoaderRoute: typeof FoodRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/auth': {
       id: '/auth'
       path: '/auth'
@@ -165,24 +137,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_authenticated/': {
+      id: '/_authenticated/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/health': {
+      id: '/_authenticated/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof AuthenticatedHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/growth': {
+      id: '/_authenticated/growth'
+      path: '/growth'
+      fullPath: '/growth'
+      preLoaderRoute: typeof AuthenticatedGrowthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/food': {
+      id: '/_authenticated/food'
+      path: '/food'
+      fullPath: '/food'
+      preLoaderRoute: typeof AuthenticatedFoodRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
-  FoodRoute: FoodRoute,
-  GrowthRoute: GrowthRoute,
-  HealthRoute: HealthRoute,
-  ProfileRoute: ProfileRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  AuthenticatedFoodRoute: AuthenticatedFoodRoute,
+  AuthenticatedGrowthRoute: AuthenticatedGrowthRoute,
+  AuthenticatedHealthRoute: AuthenticatedHealthRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
