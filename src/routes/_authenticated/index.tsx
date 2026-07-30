@@ -17,7 +17,7 @@ import { useT } from "@/lib/i18n";
 import { ageFromDob } from "@/lib/age";
 import { initialAiRecommendation } from "@/lib/mock-data";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/")({
   component: Dashboard,
   head: () => ({
     meta: [

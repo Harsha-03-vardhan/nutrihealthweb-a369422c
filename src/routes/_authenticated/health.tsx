@@ -14,7 +14,7 @@ import { EmptyState } from "@/components/empty-state";
 import { toast } from "sonner";
 import { useT } from "@/lib/i18n";
 
-export const Route = createFileRoute("/health")({
+export const Route = createFileRoute("/_authenticated/health")({
   head: () => ({
     meta: [
       { title: "Baby Health Care — NutriHealth" },

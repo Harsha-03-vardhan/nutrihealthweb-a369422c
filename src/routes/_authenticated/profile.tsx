@@ -21,7 +21,7 @@ import { CaregiverForm, BabyForm } from "@/components/profile-forms";
 import { ageFromDob } from "@/lib/age";
 import { useT } from "@/lib/i18n";
 
-export const Route = createFileRoute("/profile")({
+export const Route = createFileRoute("/_authenticated/profile")({
   head: () => ({
     meta: [
       { title: "Your Account — NutriHealth" },

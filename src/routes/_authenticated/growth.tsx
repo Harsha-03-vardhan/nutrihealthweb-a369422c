@@ -13,7 +13,7 @@ import { UpdateGrowthDialog } from "@/components/update-growth-dialog";
 import { VaccinationTracker } from "@/components/vaccination-tracker";
 import { useT } from "@/lib/i18n";
 
-export const Route = createFileRoute("/growth")({
+export const Route = createFileRoute("/_authenticated/growth")({
   head: () => ({
     meta: [
       { title: "Growth Tracker — NutriHealth" },
